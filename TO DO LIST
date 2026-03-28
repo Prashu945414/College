@@ -1,0 +1,22 @@
+import tkinter as tk 
+
+root = tk.Tk()
+root.title("TO DO LIST")
+
+tk.Label(root, text="MY TO DO LIST ").pack()
+
+entry = tk.Entry(root)
+
+def add_text():
+    user_input = entry.get()
+    text.insert(tk.END, user_input + "\n")
+    
+button = tk.Button(root, text="Add Task", width= 28,command=add_text)
+
+text = tk.Text(root, height=10, width=30)
+
+entry.pack()
+button.pack()
+text.pack()
+
+root.mainloop()
