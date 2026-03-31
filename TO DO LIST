@@ -6,17 +6,38 @@ root.title("TO DO LIST")
 tk.Label(root, text="MY TO DO LIST ").pack()
 
 entry = tk.Entry(root)
+entry_delete = tk.Entry(root)
 
+my_list=[]
 def add_text():
     user_input = entry.get()
-    text.insert(tk.END, user_input + "\n")
-    
-button = tk.Button(root, text="Add Task", width= 28,command=add_text)
+    my_list.append(user_input)
+    entry.delete(0, tk.END)
+    text.delete("1.0", tk.END)
 
+    for i , items in enumerate(my_list, start=1):
+      text.insert(tk.END, f"{i}. {items}\n")
+      
+def delete():
+    user_input = entry_delete.get()
+    number = int(user_input)
+    index = number-1
+    if index < len(my_list) and index >=0 :
+        my_list.pop(index)
+    entry_delete.delete(0, tk.END)
+    text.delete("1.0", tk.END)
+    
+    for i , items in enumerate(my_list, start=1):
+      text.insert(tk.END, f"{i}. {items}\n")
+    
+add_button = tk.Button(root, text="Add Task", width= 28,command=add_text)
 text = tk.Text(root, height=10, width=30)
+delete_button = tk.Button(root, text="Delete Task", width=10, command=delete )
 
 entry.pack()
-button.pack()
+add_button.pack()
 text.pack()
+entry_delete.pack()
+delete_button.pack()
 
 root.mainloop()
